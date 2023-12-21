@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test-httpd
+  name: test-httpd
+  namespace: test-pipeline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-httpd
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: test-httpd
+    spec:
+      containers:
+      - image: quay.apps.cluster-fvb4l.fvb4l.sandbox1930.opentlc.com/pipeline/test-repo:httpd-v1
+        imagePullPolicy: IfNotPresent
+        name: test-repo
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: httpd
+      serviceAccountName: httpd
+      terminationGracePeriodSeconds: 30
