@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: custom
+  name: custom
+  namespace: test-pipeline2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: custom
+    spec:
+      containers:
+      - image: quay.apps.cluster-thslv.thslv.sandbox1947.opentlc.com/test/test-repo:custom-apache-imagev1
+        imagePullPolicy: IfNotPresent
+        name: test-repo
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: quay-registry-secret
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: gopi
+      serviceAccountName: gopi
+      terminationGracePeriodSeconds: 30
