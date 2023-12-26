@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: test-httpd
-  name: test-httpd
+    app: test-httpd1
+  name: test-httpd1
   namespace: test-pipeline
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-httpd
+      app: test-httpd1
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,10 +18,10 @@ spec:
   template:
     metadata:
       labels:
-        app: test-httpd
+        app: test-httpd1
     spec:
       containers:
-      - image: quay.apps.cluster-fvb4l.fvb4l.sandbox1930.opentlc.com/pipeline/test-repo:httpd-v1
+      - image: quay.apps.cluster-f5lxc.f5lxc.sandbox2226.opentlc.com/test/test-repo:httpd-v1
         imagePullPolicy: IfNotPresent
         name: test-repo
         resources: {}
@@ -31,6 +31,6 @@ spec:
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
-      serviceAccount: httpd
-      serviceAccountName: httpd
+      serviceAccount: httpd1
+      serviceAccountName: httpd1
       terminationGracePeriodSeconds: 30
