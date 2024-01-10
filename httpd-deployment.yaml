@@ -4,7 +4,7 @@ metadata:
   labels:
     app: test-httpd1
   name: test-httpd1
-  namespace: test-pipeline
+  namespace: pipeline
 spec:
   replicas: 1
   selector:
@@ -21,7 +21,7 @@ spec:
         app: test-httpd1
     spec:
       containers:
-      - image: quay.apps.cluster-f5lxc.f5lxc.sandbox2226.opentlc.com/test/test-repo:httpd-v1
+      - image: quay.apps.cluster-n7lqw.n7lqw.sandbox234.opentlc.com/test-organization/test-repo:httpd-v1
         imagePullPolicy: IfNotPresent
         name: test-repo
         resources: {}
