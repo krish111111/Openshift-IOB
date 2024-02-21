@@ -21,7 +21,7 @@ spec:
         app: httpd
     spec:
       containers:
-      - image: quay.apps.cluster-d8c26.d8c26.sandbox693.opentlc.com/crm-iob/httpd:v2
+      - image: quay.apps.cluster-lwp9z.lwp9z.sandbox1582.opentlc.com/iob-crm/httpd:v1
         imagePullPolicy: IfNotPresent
         name: test-repo
         resources: {}
