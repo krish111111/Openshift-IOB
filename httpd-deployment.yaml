@@ -4,7 +4,7 @@ metadata:
   labels:
     app: httpd
   name: httpd
-  namespace: devsecops-pipeline
+  namespace: dev-pipeline
 spec:
   replicas: 1
   selector:
@@ -23,13 +23,13 @@ spec:
       containers:
       - image: quay.apps.cluster-wdjmz.wdjmz.sandbox2391.opentlc.com/crm/httpd:v1
         imagePullPolicy: IfNotPresent
-        name: test-repo
+        name: httpd
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
       imagePullSecrets:
       - name: quay-registry-secret
-      dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
